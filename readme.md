@@ -18,6 +18,15 @@ SELECT "id","title","color" FROM "public"."todolist" ORDER BY "id"
 SELECT "id","title","iscomplete","todolistid" FROM "public"."todo" WHERE "todolistid"=$1 ORDER BY "id" # Parameters: [1]
 ```
 
+### Should have executed this instead
+
+```sql
+SELECT "TodoList"."id", "TodoList"."title", "TodoList"."color", "todos"."id" AS "todos.id", "todos"."title" AS "todos.title", "todos"."iscomplete" AS "todos.isComplete", "todos"."todolistid" AS "todos.todoListId" 
+FROM "todolist" AS "TodoList" 
+LEFT OUTER JOIN "todo" AS "todos" 
+ON "TodoList"."id" = "todos"."todolistid";
+```
+
 <details>
   <summary>Result</summary>
 
